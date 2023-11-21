@@ -24,7 +24,7 @@
 
     <section id="dashboard" class="mt-3 container-fluid">
         <div class="row">
-            <div class="col-8">
+            <div class="col-9">
                 
                 <div class="row">
                     <div class="col-12">
@@ -43,7 +43,7 @@
                                         <div class="col align-self-center">
                                             <img id="currentWeatherImg" src="assests/imgs/test1.png" alt="">
                                             <div class="text-icon">
-                                                <i class="fa-solid fa-cloud"></i>
+                                                <img src="assests/imgs/cloud.png" alt="">
                                                 <h4 id="currentWeatherText">Rainy Stormy Clouds</h4>
                                             </div>
                                         </div>
@@ -52,12 +52,12 @@
                                             <h1 id="currentWeatherTemp">28°C</h1>
                                             <hr>
                                             <div class="text-icon">
-                                                <i class="fa-solid fa-map-location-dot"></i>
+                                                <img src="assests/imgs/location.png" alt="">
                                                 <h4 id="location">Colombo, Sri Lanka</h4>
                                             </div>
                                             <div class="text-icon">
-                                                <i class="fa-regular fa-calendar-days"></i>
-                                                <h4 id="currentDateTime">24 July 2023 - 6:00 PM</h4>
+                                                <img src="assests/imgs/date.png" alt="">
+                                                <h4 id="currentDateTime">24 July 2023, 6:00 PM</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -67,21 +67,69 @@
 
                             <div class="col-6">
                                 <!-- Forecast Pane -->
-                                <div class="forecast pane"></div>
+                                <div class="forecast pane">
+                                    <h1 class="pane-title">2 Days Forecast</h1>
+
+                                    <div class="forecast-card">
+                                        <p><b>Monday</b> <span>25 July</span></p>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/temp.png" alt="">
+                                            <h4>28 - 36°C</h4>
+                                        </div>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/cloud.png" alt="">
+                                            <h4>Patchy Rain Possible</h4>
+                                        </div>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/wind.png" alt="">
+                                            <h4>Wind < 6.2km/h</h4>
+                                        </div>
+                                        <img src="assests/imgs/test2.png" alt="">
+                                    </div>
+
+                                    <div class="forecast-card mt-4">
+                                        <p><b>Tuesday</b> <span>26 July</span></p>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/temp.png" alt="">
+                                            <h4>24 - 32°C</h4>
+                                        </div>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/cloud.png" alt="">
+                                            <h4>Light Rain Shower</h4>
+                                        </div>
+                                        <div class="text-icon">
+                                            <img src="assests/imgs/wind.png" alt="">
+                                            <h4>Wind < 7.5km/h</h4>
+                                        </div>
+                                        <img src="assests/imgs/test3.png" alt="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                     </div>
                     
                     <!-- Highlights -->
-                    <div class="col-12">
+                    <div class="col-12 highlights">
 
-                        <h1>Today's Highlights</h1>
+                        <div class="mt-4">
+                            <div class="highlights-title">Today's Highlights <span class="title-line"></span></div>
+                        </div>
                         
                         <div class="row">
                             <div class="col-4">
                                 <!-- Wind Status Pane -->
-                                <div class="wind-status pane"></div>
+                                <div class="wind-status pane">
+                                    <h1 class="pane-title">Wind Status</h1>
+                                    <div class="chart">
+                                        <div id="curve_chart"></div>
+                                        <div class="v-line"></div>
+                                    </div>
+                                    <div id="wind-details">
+                                        <p class="ls-values">6.2</p>
+                                        <p>5:24 PM</p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-4">
@@ -89,11 +137,23 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <!-- Humidity Pane -->
-                                        <div class="humidity pane"></div>
+                                        <div class="humidity pane">
+                                            <h1 class="pane-title">Humidity</h1>
+                                            <div>
+                                                <img src="assests/imgs/humidity.png" alt="humidity_icon">
+                                                <p class="ls-values">70</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-12 mt-3">
                                         <!-- UV Index Pane -->
-                                        <div class="uv-index pane"></div>
+                                        <div class="uv-index pane">
+                                            <h1 class="pane-title">UV Index</h1>
+                                            <div>
+                                                <img src="assests/imgs/uv_index.png" alt="humidity_icon">
+                                                <p class="ls-values">6</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -101,7 +161,30 @@
 
                             <div class="col-4">
                                 <!-- Sunrise & Sunset Pane -->
-                                <div class="sunrise pane"></div>
+                                <div class="sunrise pane">
+                                    <h1 class="pane-title">Sunrise & Sunset</h1>
+
+                                    <div class="sunrise-box">
+                                        <div class="sun-path">
+                                            <div></div>
+                                            <img class="sun" src="assests/imgs/sun.png" alt="">
+                                            <div class="sun-icons">
+                                                <img src="assests/imgs/sunrise.png" alt="">
+                                                <img src="assests/imgs/sunset.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sun-details mt-2">
+                                        <div>
+                                            <p>Sunrise</p>
+                                            <p id="sunriseTime">6:10 AM</p>
+                                        </div>
+                                        <div>
+                                            <p>Sunset</p>
+                                            <p id="sunsetTime">5:55 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -110,13 +193,15 @@
 
             </div>
 
-            <div class="col-4">
+            <div class="col">
                 <!-- List Pane -->
                 <div class="list pane"></div>
             </div>
         </div>
     </section>
     
+    <!-- Google Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- jQuerry -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -126,6 +211,49 @@
     <!-- Fontawsome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
     <!-- Script -->
+    <script type="text/javascript">
+        setChart();
+
+         $(window).on('resize', function() {
+            setChart();
+        });
+
+        function setChart() { 
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Sales'],
+                ['2004',  Math.random() * 1000],
+                ['2005',  Math.random() * 1000],
+                ['2006',  Math.random() * 1000],
+                ['2004',  Math.random() * 1000],
+                ['2005',  Math.random() * 1000],
+                ['2006',  Math.random() * 1000],
+                ['2007',  Math.random() * 1000]
+            ]);
+    
+            var options = {
+                curveType: 'function',
+                legend: { position: 'none' }, // Set legend to 'none' to hide it
+                title: null, // Set title to null to remove it
+                backgroundColor: '#ededed',
+                hAxis: {
+                    gridlines: {color: 'transparent'} // Set the color to transparent to hide horizontal gridlines
+                },
+                vAxis: {
+                    gridlines: {color: 'transparent'} // Set the color to transparent to hide vertical gridlines
+                }
+            };
+    
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    
+            chart.draw(data, options);
+            }
+        }
+  
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

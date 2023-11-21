@@ -12,13 +12,21 @@ body{
 }
 
 .pane{
-    background: rgb(237, 237, 237);
+    background: #ededed;
     /* border: 1px solid red; */
     margin: 5px;
     padding: 20px;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3),
     -5px -5px 3px rgba(255, 255, 255, 1);
+    position: relative;
+}
+
+.pane-title {
+    font-size: 26px;
+    font-weight: 400;
+    height: fit-content;
+    margin-bottom: 30px;
 }
 
 /* ------------------------------------------------ */
@@ -27,11 +35,11 @@ body{
 }
 
 .current-weather, .forecast {
-    height: 40vh;
+    height: 100%;
 }
 
 .list {
-    height: calc(90vh + 35px);
+    height: 100%;
 }
 
 h1 {
@@ -61,6 +69,11 @@ h1 {
     margin: 0;
 }
 
+.text-icon img {
+    width: 30px;
+    aspect-ratio: 1;
+}
+
 hr {
     border-width: 1px;
     border-color: #494949;
@@ -70,7 +83,7 @@ hr {
 
 .search-bar {
     width: 100%;
-    height: 50px;
+    height: 60px;
     position: relative;
 }
 
@@ -103,4 +116,243 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* -------------------------------- forecast ------------- */
+
+.forecast-card {
+    width: 100%;
+    height: 140px;
+    border: 1px solid #494949;
+    border-radius: 25px;
+    position: relative;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.forecast-card p {
+    font-size: 24px;
+}
+
+.forecast-card span {
+    font-size: 16px;
+}
+
+.forecast-card p {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background-color: #ededed;
+    padding-inline: 5px;
+}
+
+.forecast-card .text-icon h4 {
+    font-size: 16px;
+}
+
+.forecast-card > img {
+    height: 85%;
+    aspect-ratio: 1;
+    position: absolute;
+    right: 50px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/* ----------------------------- highlights -------------- */
+
+.highlights>div:first-child {
+    overflow: hidden;
+    position: relative;
+}
+.highlights-title {
+    font-size: 30px;
+    position: relative;
+}
+.title-line {
+    width: 1000px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 260px;
+    margin: auto;
+}
+
+/* Wind Status */
+
+.chart {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+#curve_chart {
+    transform: scale(1.6);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#curve_chart text{
+    display: none;
+}
+
+.v-line {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    left: 70.8%;
+    border-right: 2px dashed blue;
+}
+
+#wind-details {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    margin: auto;
+}
+
+#wind-details p:last-child {
+    font-size: 24px;
+    align-self: center;
+    margin: 0;
+}
+
+.ls-values {
+    font-size: 48px;
+    margin: 0;
+}
+
+.ls-values::after {
+    font-size: 24px;
+}
+
+#wind-details .ls-values::after {
+    content: "km/h";
+}
+
+/* Humidity */
+
+:is(.humidity, .uv-index) div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+:is(.humidity, .uv-index) div img {
+    height: 72px;
+    aspect-ratio: 1;
+}
+
+.humidity .ls-values::after {
+    content: " %";
+}
+
+.uv-index .ls-values::after {
+    content: " UV";
+}
+
+/* Sunrise & Sunset */
+
+.sunrise-box {
+    border-bottom: 4px solid #5E5E5E;
+    aspect-ratio: 2/1;
+    position: relative;
+    overflow: hidden;
+}
+
+.sun-path {
+    width: 300px;
+    aspect-ratio: 2/1;
+    border: 2px dashed #ff9a03;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    margin: auto;
+    border-radius: 300px 300px 0 0;
+}
+
+.sun-path div:first-child {
+    width: 100%;
+    aspect-ratio: 2/1;
+    position: absolute;
+    bottom: -100%;
+    border-radius: 0 0 300px 300px;
+    background: linear-gradient(90deg, rgba(255, 170, 41, 0.52) 0.17%, rgba(154, 168, 143, 0.00) 50.52%, rgba(41, 165, 255, 0.63) 99.82%);
+    transform-origin: top center;
+    animation: rotate-sun 30s linear infinite;
+}
+
+.sun {
+    width: 40px;
+    aspect-ratio: 1;
+    position: absolute;
+    left: -20px;
+    bottom: -20px;
+    transform-origin: 168.5px;
+    animation: rotate-sun 30s linear infinite;
+}
+
+@keyframes rotate-sun {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(41.5deg);
+    }
+}
+
+.sun-icons {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 5px;
+}
+
+.sun-icons img {
+    width: 30px;
+    aspect-ratio: 1;
+}
+
+.sun-details div {
+    display: flex;
+    flex-direction: column;
+}
+
+.sun-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sun-details p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sun-details div p:first-child {
+    color: #ff9a03;
+}
+
+.sun-details div:last-child p {
+    text-align: end;
 }
