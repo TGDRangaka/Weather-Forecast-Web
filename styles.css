@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #dbdbdb;
+    width: 100%;
+    color: #494949;
+    font-family: 'Roboto', sans-serif;
+}
+
+.pane{
+    background: rgb(237, 237, 237);
+    /* border: 1px solid red; */
+    margin: 5px;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3),
+    -5px -5px 3px rgba(255, 255, 255, 1);
+}
+
+/* ------------------------------------------------ */
+#dashboard {
+    display: grid;
+}
+
+.current-weather, .forecast {
+    height: 40vh;
+}
+
+.list {
+    height: calc(90vh + 35px);
+}
+
+h1 {
+    margin: 0;
+    height: 10vh;
+}
+
+.wind-status, .sunrise{
+    height: calc(40vh + 25px);
+}
+
+.humidity, .uv-index {
+    height: 20vh;
+}
+
+.text-icon{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+}
+
+.text-icon h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+hr {
+    border-width: 1px;
+    border-color: #494949;
+}
+
+/* --------------------- Current Weather ------------------------ */
+
+.search-bar {
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    height: 100%;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 50px;
+    padding: 20px;
+}
+
+.search-bar .fa-location-dot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    margin: auto;
+    height: 70%;
+    aspect-ratio: 1;
+    color: black;
+}
+
+#currentWeatherTemp {
+    font-size: 90px;
+    font-weight: 300;
+}
+
+.current-details .col:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
