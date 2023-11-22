@@ -24,7 +24,7 @@
 
     <section id="dashboard" class="mt-3 container-fluid">
         <div class="row">
-            <div class="col-9">
+            <div class="col-lg-9">
                 
                 <div class="row">
                     <div class="col-12">
@@ -71,35 +71,35 @@
                                     <h1 class="pane-title">2 Days Forecast</h1>
 
                                     <div class="forecast-card">
-                                        <p><b>Monday</b> <span>25 July</span></p>
+                                        <p class="forecast-day"><b>Monday</b> <span>25 July</span></p>
                                         <div class="text-icon">
                                             <img src="assests/imgs/temp.png" alt="">
-                                            <h4>28 - 36°C</h4>
+                                            <h4 class="forecast-temp">28 - 36°C</h4>
                                         </div>
                                         <div class="text-icon">
                                             <img src="assests/imgs/cloud.png" alt="">
-                                            <h4>Patchy Rain Possible</h4>
+                                            <h4 class="forecast-weather">Patchy Rain Possible</h4>
                                         </div>
                                         <div class="text-icon">
                                             <img src="assests/imgs/wind.png" alt="">
-                                            <h4>Wind < 6.2km/h</h4>
+                                            <h4 class="forecast-wind">Wind < 6.2km/h</h4>
                                         </div>
                                         <img src="assests/imgs/test2.png" alt="">
                                     </div>
 
                                     <div class="forecast-card mt-4">
-                                        <p><b>Tuesday</b> <span>26 July</span></p>
+                                        <p class="forecast-day"><b>Tuesday</b> <span>26 July</span></p>
                                         <div class="text-icon">
                                             <img src="assests/imgs/temp.png" alt="">
-                                            <h4>24 - 32°C</h4>
+                                            <h4 class="forecast-temp">28 - 36°C</h4>
                                         </div>
                                         <div class="text-icon">
                                             <img src="assests/imgs/cloud.png" alt="">
-                                            <h4>Light Rain Shower</h4>
+                                            <h4 class="forecast-weather">Patchy Rain Possible</h4>
                                         </div>
                                         <div class="text-icon">
                                             <img src="assests/imgs/wind.png" alt="">
-                                            <h4>Wind < 7.5km/h</h4>
+                                            <h4 class="forecast-wind">Wind < 6.2km/h</h4>
                                         </div>
                                         <img src="assests/imgs/test3.png" alt="">
                                     </div>
@@ -160,14 +160,21 @@
                             </div>
 
                             <div class="col-4">
-                                <!-- Sunrise & Sunset Pane -->
+                                <!-- Sunrise & Sunset | Moonrise & Moonset Pane -->
                                 <div class="sunrise pane">
                                     <h1 class="pane-title">Sunrise & Sunset</h1>
+                                    <div class="sun-moon-btn">
+                                        <div class="btn-circle"></div>
+                                        <img src="assests/imgs/sun_btn.png" alt="">
+                                        <img src="assests/imgs/moon_btn.png" alt="">
+                                    </div>
 
                                     <div class="sunrise-box">
-                                        <div class="sun-path">
+                                        <div class="path">
+                                            <div></div>
                                             <div></div>
                                             <img class="sun" src="assests/imgs/sun.png" alt="">
+                                            <img class="moon" src="assests/imgs/moon.png" alt="">
                                             <div class="sun-icons">
                                                 <img src="assests/imgs/sunrise.png" alt="">
                                                 <img src="assests/imgs/sunset.png" alt="">
@@ -177,11 +184,11 @@
                                     <div class="sun-details mt-2">
                                         <div>
                                             <p>Sunrise</p>
-                                            <p id="sunriseTime">6:10 AM</p>
+                                            <p id="riseTime">6:10 AM</p>
                                         </div>
                                         <div>
                                             <p>Sunset</p>
-                                            <p id="sunsetTime">5:55 PM</p>
+                                            <p id="setTime">5:55 PM</p>
                                         </div>
                                     </div>
                                 </div>
@@ -197,10 +204,10 @@
                 <!-- List Pane -->
                 <div class="list pane">
                     <nav>
-                        <button>1h</button>|
-                        <button>6h</button>|
-                        <button>12h</button>|
-                        <button>History</button>
+                        <button id="btn_1h">1h</button>
+                        <button id="btn_6h">6h</button>
+                        <button id="btn_12h">12h</button>
+                        <button id="btn_history">History</button>
                     </nav>
                     <div class="weathers">
 
@@ -348,55 +355,12 @@
     <!-- jQuerry -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Fontawsome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
     <!-- Script -->
-    <script type="text/javascript">
-        setChart();
-
-         $(window).on('resize', function() {
-            setChart();
-        });
-
-        function setChart() { 
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales'],
-                ['2004',  Math.random() * 1000],
-                ['2005',  Math.random() * 1000],
-                ['2006',  Math.random() * 1000],
-                ['2004',  Math.random() * 1000],
-                ['2005',  Math.random() * 1000],
-                ['2006',  Math.random() * 1000],
-                ['2007',  Math.random() * 1000]
-            ]);
-    
-            var options = {
-                curveType: 'function',
-                legend: { position: 'none' }, // Set legend to 'none' to hide it
-                title: null, // Set title to null to remove it
-                backgroundColor: '#ededed',
-                hAxis: {
-                    gridlines: {color: 'transparent'} // Set the color to transparent to hide horizontal gridlines
-                },
-                vAxis: {
-                    gridlines: {color: 'transparent'} // Set the color to transparent to hide vertical gridlines
-                }
-            };
-    
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-    
-            chart.draw(data, options);
-            }
-        }
-  
-    </script>
+    <script src="script.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
