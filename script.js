@@ -145,6 +145,7 @@ function setData(data){
     $('#currentWeatherTemp').text(data.current.temp_c + '°C');
     $('#location').text(data.location.name + ', ' + data.location.country);
     $('#currentDateTime').text(convertDateTime(data.location.localtime));
+    $('#currentWeatherImg').attr('src', getWeatherIcon(data.current.condition.text));
 
     // set forecast weather details
         // 1st day
@@ -155,6 +156,7 @@ function setData(data){
         $('.forecast-temp').eq(0).text(`${day.day.mintemp_c} - ${day.day.maxtemp_c}°C`);
         $('.forecast-weather').eq(0).text(day.day.condition.text);
         $('.forecast-wind').eq(0).text(`Wind ${day.day.maxwind_kph}km/h`);
+        $('.forecast img').eq(3).attr('src', getWeatherIcon(day.day.condition.text));
 
         // 2nd day
         day = data.forecast.forecastday[2];
@@ -164,6 +166,7 @@ function setData(data){
         $('.forecast-temp').eq(1).text(`${day.day.mintemp_c} - ${day.day.maxtemp_c}°C`);
         $('.forecast-weather').eq(1).text(day.day.condition.text);
         $('.forecast-wind').eq(1).text(`Wind ${day.day.maxwind_kph}km/h`);
+        $('.forecast img').eq(7).attr('src', getWeatherIcon(day.day.condition.text));
 
     // set highlights
         // wind status
@@ -226,7 +229,7 @@ $('#btn_1h').on('click', ()=>{
         let hourData = hourlyData[i]
         $('.weathers').append(`
             <div class="weather-card">
-                <img src="assests/imgs/test2.png" alt="">
+                <img src="${hourData[0]}" alt="${hourData[0]}">
                 <h3>${hourData[1]}</h3>
                 <h3><b>${hourData[2]}</b></h3>
                 <h3>${hourData[3]}</h3>
@@ -241,7 +244,7 @@ $('#btn_6h').on('click', ()=>{
         let hourData = hourlyData[i]
         $('.weathers').append(`
             <div class="weather-card">
-                <img src="assests/imgs/test2.png" alt="">
+                <img src="${hourData[0]}" alt="${hourData[0]}">
                 <h3>${hourData[1]}</h3>
                 <h3><b>${hourData[2]}</b></h3>
                 <h3>${hourData[3]}</h3>
@@ -256,7 +259,7 @@ $('#btn_12h').on('click', ()=>{
         let hourData = hourlyData[i]
         $('.weathers').append(`
             <div class="weather-card">
-                <img src="assests/imgs/test2.png" alt="">
+                <img src="${hourData[0]}" alt="${hourData[0]}">
                 <h3>${hourData[1]}</h3>
                 <h3><b>${hourData[2]}</b></h3>
                 <h3>${hourData[3]}</h3>
@@ -271,7 +274,7 @@ $('#btn_history').on('click', ()=>{
         let day = history[i];
         $('.weathers').append(`
             <div class="weather-card">
-                <img src="assests/imgs/test2.png" alt="">
+                <img src="${day[0]}" alt="">
                 <h3>${day[1]}</h3>
                 <h3><b>${day[2]}</b></h3>
                 <h3>${day[3]}</h3>
@@ -280,6 +283,39 @@ $('#btn_history').on('click', ()=>{
     }
 });
 
+function getWeatherIcon(text){
+    let t = text.toLowerCase();
+    console.log('t : ' + t);
+    if(t.includes('sunny')){
+        return 'assests/imgs/sunny.png';
+    }else if(t.includes('clear')){
+        return 'assests/imgs/clear.png';
+    }else if(t.includes('cloudy') || t.includes('overcast')){
+        return 'assests/imgs/cloudy.png';
+    }else if(t.includes('fog') || t.includes('mist')){
+        return 'assests/imgs/fog.png';
+    }else if(t.includes('rain')){
+        if(t.includes('thunder')){
+            return 'assests/imgs/thunder_rain.png';
+        }else if(t.includes('heavy')){
+            return 'assests/imgs/heavy_rain.png';
+        }
+        return 'assests/imgs/rain.png'
+    }else if(t.includes('snow')){
+        if(t.includes('thunder')){
+            return 'assests/imgs/thunder_snow.png';
+        }
+        return 'assests/imgs/snow.png';
+    }else if(t.includes('thundery')){
+        return 'assests/imgs/thunder.png';
+    }else if(t.includes('sleet') || t.includes('drizzle') || t.includes('pellets')){
+        return 'assests/imgs/freezing.png';
+    }else if(t.includes('blizzard')){
+        return 'assests/imgs/blizzard.png';
+    }else{
+        return 'assests/imgs/cloudy.png';
+    }
+}
 function getHistory(location){
     let pastDays = getPast7Days();
     let weatherHistory = new Array(7);
@@ -290,8 +326,8 @@ function getHistory(location){
             let day = response.forecast.forecastday[0];
             let time = convertDateTime(day.date + ' 10:00');
             weatherHistory[i] = ([
-                day.day.condition.text,
-                day.day.avgtemp_c,
+                getWeatherIcon(day.day.condition.text),
+                '+' + day.day.avgtemp_c + '°C',
                 time.split(',')[0],
                 '--:--'
             ])
@@ -341,7 +377,7 @@ function getHourlyData(data){
             let time = convertDateTime(hours[j].time);
 
             hourlyData.push([
-                hours[j].condition.text,
+                getWeatherIcon(hours[j].condition.text),
                 '+' + hours[j].temp_c + '°C',
                 time.split(',')[0],
                 time.split('at ')[1]

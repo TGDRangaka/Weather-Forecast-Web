@@ -132,6 +132,11 @@ hr {
     color: black;
 }
 
+#currentWeatherImg {
+    width: 250px;
+    aspect-ratio: 1;
+}
+
 #currentWeatherTemp {
     font-size: 90px;
     font-weight: 300;
