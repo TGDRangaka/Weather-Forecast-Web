@@ -294,7 +294,7 @@ function getWeatherIcon(text){
         return 'assests/imgs/cloudy.png';
     }else if(t.includes('fog') || t.includes('mist')){
         return 'assests/imgs/fog.png';
-    }else if(t.includes('rain')){
+    }else if(t.includes('rain') || t.includes('drizzle')){
         if(t.includes('thunder')){
             return 'assests/imgs/thunder_rain.png';
         }else if(t.includes('heavy')){
@@ -308,7 +308,7 @@ function getWeatherIcon(text){
         return 'assests/imgs/snow.png';
     }else if(t.includes('thundery')){
         return 'assests/imgs/thunder.png';
-    }else if(t.includes('sleet') || t.includes('drizzle') || t.includes('pellets')){
+    }else if(t.includes('sleet') || t.includes('pellets')){
         return 'assests/imgs/freezing.png';
     }else if(t.includes('blizzard')){
         return 'assests/imgs/blizzard.png';
