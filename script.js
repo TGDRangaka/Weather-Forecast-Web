@@ -1,3 +1,4 @@
+$('#search').val('Colombo');
 let windValues = null;
 let hourlyData = [];
 let history = [];
@@ -131,6 +132,7 @@ $('#search').keypress(function(event) {
                 console.log(data);
 
                 setData(data);
+                $('#search').val('');
             })
             .fail((xhr, textStatus, errorThrown) => {
                 console.error("AJAX error:", textStatus, errorThrown);
@@ -140,6 +142,7 @@ $('#search').keypress(function(event) {
 });
 
 function setData(data){
+    console.log('in setData()');
     // set current weather details
     $('#currentWeatherText').text(data.current.condition.text);
     $('#currentWeatherTemp').text(data.current.temp_c + '°C');
@@ -219,11 +222,11 @@ function setData(data){
 
     // set weather list
     hourlyData = getHourlyData(data);
-    $('#btn_1h').click();
+    $('#btn_6h').click();
     history = getHistory(data.location.name);
 }
 
-$('#btn_1h').on('click', ()=>{
+$('#btn_1h').on('click', function() {
     $('.weathers').html("");
     for(let i = 0; i < hourlyData.length; i++){
         let hourData = hourlyData[i]
@@ -236,9 +239,11 @@ $('#btn_1h').on('click', ()=>{
             </div>
         `);
     }
+    $('nav button').css('background', '#ededed');
+    $(this).css('background', 'var(--second-color)')
 });
 
-$('#btn_6h').on('click', ()=>{
+$('#btn_6h').on('click', function() {
     $('.weathers').html("");
     for(let i = 0; i < hourlyData.length; i+=6){
         let hourData = hourlyData[i]
@@ -251,9 +256,11 @@ $('#btn_6h').on('click', ()=>{
             </div>
         `);
     }
+    $('nav button').css('background', '#ededed');
+    $(this).css('background', 'var(--second-color)')
 });
 
-$('#btn_12h').on('click', ()=>{
+$('#btn_12h').on('click', function() {
     $('.weathers').html("");
     for(let i = 0; i < hourlyData.length; i+=12){
         let hourData = hourlyData[i]
@@ -266,9 +273,11 @@ $('#btn_12h').on('click', ()=>{
             </div>
         `);
     }
+    $('nav button').css('background', '#ededed');
+    $(this).css('background', 'var(--second-color)')
 });
 
-$('#btn_history').on('click', ()=>{
+$('#btn_history').on('click', function() {
     $('.weathers').html("");
     for(let i = 0; i < history.length; i++){
         let day = history[i];
@@ -281,6 +290,8 @@ $('#btn_history').on('click', ()=>{
             </div>
         `);
     }
+    $('nav button').css('background', '#ededed');
+    $(this).css('background', 'var(--second-color)')
 });
 
 function getWeatherIcon(text){
@@ -446,3 +457,14 @@ function calculateTimeGap(time1, time2) {
 
     return Math.abs(minutes2 - minutes1);
 }
+
+getWeather('Colombo')
+    .done(data => {
+        console.log(data);
+
+        setData(data);
+        $('#search').val('');
+    })
+    .fail((xhr, textStatus, errorThrown) => {
+        console.error("AJAX error:", textStatus, errorThrown);
+    });

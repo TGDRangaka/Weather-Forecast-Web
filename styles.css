@@ -445,13 +445,15 @@ nav {
 }
 
 nav button {
+    --second-color: #43A5FF;
     width: 70px;
     border: none;
     padding: 5px;
     border-radius: 8px;
+    background: #ededed;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3),
     -3px -3px 3px rgba(255, 255, 255, 1);
-    border: 1px solid rgba(0, 0, 0, 0.01);
+    border: none;
 }
 
 .weathers {
