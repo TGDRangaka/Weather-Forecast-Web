@@ -26,13 +26,37 @@ setChart([
 ]);
 
 $(window).on('resize', function() {
-setChart(windValues);
+    setChart(windValues);
+    setResponsize();
 });
 
-$('.sun, .moon').each(function() {
-    let rValue = parseInt($(this).css('--width'), 10);
-    $(this).css('transform-origin', `${rValue / 2 + 150 - 1.5}px`);
-});
+setResponsize();
+
+function setResponsize(){
+    let pathWidth = $('.path').width();
+    console.log(pathWidth);
+    $('.path div:first-child, .path div:nth-child(2)')
+        .css('borderRadius', `0 0 ${pathWidth/2}px ${pathWidth/2}px`);
+
+    
+    $('.sun, .moon').each(function() {
+        let rValue = parseInt($(this).css('--width'), 10);
+        $(this).css('transform-origin', `${rValue / 2 + (pathWidth/2) - 1.5}px`);
+    });
+
+    let screenWidth = $(window).width();
+    if(screenWidth <= 1500){
+        $('.left-pane').removeClass('col-xl-9');
+        $('.left-pane').addClass('col-xl-12');
+        $('.right-pane').removeClass('col-xl-3');
+        $('.right-pane').addClass('col-xl-12');
+    }else {
+        $('.left-pane').removeClass('col-xl-12');
+        $('.left-pane').addClass('col-xl-9');
+        $('.right-pane').removeClass('col-xl-12');
+        $('.right-pane').addClass('col-xl-3');
+    }
+}
 
 let isSunSelected = true;
 let sunRiseTime = 'N/A';

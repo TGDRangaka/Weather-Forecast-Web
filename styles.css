@@ -65,6 +65,7 @@ img {
 
 .list {
     height: 100%;
+    padding: 5px;
 }
 
 h1 {
@@ -73,11 +74,11 @@ h1 {
 }
 
 .wind-status, .sunrise{
-    height: calc(40vh + 25px);
+    height: 385px;
 }
 
 .humidity, .uv-index {
-    height: 20vh;
+    height: 180px;
 }
 
 .text-icon{
@@ -152,7 +153,7 @@ hr {
 
 .forecast-card {
     width: 100%;
-    height: 140px;
+    height: 40%;
     border: 1px solid #494949;
     border-radius: 25px;
     position: relative;
@@ -187,7 +188,7 @@ hr {
     height: 85%;
     aspect-ratio: 1;
     position: absolute;
-    right: 50px;
+    right: 40px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -338,7 +339,7 @@ hr {
 }
 
 .path {
-    width: 300px;
+    width: 95%;
     aspect-ratio: 2/1;
     border: 2px dashed #ff9a03;
     position: absolute;
@@ -355,7 +356,7 @@ hr {
     aspect-ratio: 2/1;
     position: absolute;
     bottom: -100%;
-    border-radius: 0 0 300px 300px;
+    /* border-radius: 0 0 300px 300px; */
     background: linear-gradient(90deg, rgba(255, 170, 41, 0.52) 0.17%, rgba(154, 168, 143, 0.00) 50.52%, rgba(41, 165, 255, 0) 99.82%);
     transform-origin: top center;
     transition: 2s;
@@ -374,10 +375,7 @@ hr {
     position: absolute;
     left: calc(var(--width) / 2 * -1);
     bottom: calc(var(--width) / 2 * -1);
-    --half-w: calc(var(--width) / 2);
-    --r: calc(var(--half-w) + 150 - 1.5px);
     transition: 2s;
-    /* animation: rotate-sun 30s linear infinite; */
 }
 
 .moon {
@@ -478,3 +476,16 @@ nav button {
     font-weight: 400;
 }
 
+@media (max-width: 950px) {
+    
+    .forecast-card > img {
+        right: -10px;
+    }
+}
+
+@media (max-width: 766px) {
+    
+    .forecast-card > img {
+        right: 30px;
+    }
+}
