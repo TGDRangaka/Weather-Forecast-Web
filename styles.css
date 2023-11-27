@@ -489,3 +489,10 @@ nav button {
         right: 30px;
     }
 }
+
+@media (max-width: 450px) {
+    
+    .forecast-card > img {
+        right: -15px;
+    }
+}
